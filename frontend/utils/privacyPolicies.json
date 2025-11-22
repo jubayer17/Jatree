@@ -1,0 +1,52 @@
+{
+  "privacyPolicies": [
+    {
+      "company": "Green Line",
+      "description": "Green Line is committed to protecting the privacy and personal data of our customers. We collect personal details such as names, phone numbers, travel history, and booking preferences to provide efficient booking and travel services. This information helps us improve service quality, offer relevant promotions, and ensure smooth operational management.",
+      "address": "9/2, Outer Circular Road, Momen Bagh, Rajarbagh, Dhaka 1217",
+      "contact": "Tel: +88 02 8315380, Call Center Mobile: 09613316557",
+      "policyLink": "Refer to website for Privacy Policy",
+      "notes": "All collected information is stored securely, with access limited to authorized personnel only. Data sharing with external entities occurs strictly when required for legal or operational needs. Security protocols include encryption, access restrictions, and regular audits. By utilizing Green Line services, you consent to the policies outlined here. Updates to this privacy policy will be posted on our website and are effective immediately upon publication."
+    },
+    {
+      "company": "Ena",
+      "description": "Ena is committed to protecting the privacy and personal data of our customers. We collect personal details such as names, phone numbers, travel history, and booking preferences to provide efficient booking and travel services. This information helps us improve service quality, offer relevant promotions, and ensure smooth operational management.",
+      "address": "StarNet, Plot 97/A, 2nd Floor, Road-7, Sector-4, Uttara C/A, Dhaka-1230",
+      "contact": "Mohakhali Bus Stand: 01760-737650 (Non-AC) & 01619-737650 (AC)",
+      "policyLink": "See website for full Privacy Policy",
+      "notes": "All collected information is stored securely, with access limited to authorized personnel only. Data sharing with external entities occurs strictly when required for legal or operational needs. Security protocols include encryption, access restrictions, and regular audits. By utilizing Ena services, you consent to the policies outlined here. Updates to this privacy policy will be posted on our website and are effective immediately upon publication."
+    },
+    {
+      "company": "Desh Travel",
+      "description": "Desh Travel is committed to protecting the privacy and personal data of our customers. We collect personal details such as names, phone numbers, travel history, and booking preferences to provide efficient booking and travel services. This information helps us improve service quality, offer relevant promotions, and ensure smooth operational management.",
+      "address": "70A Progoti Shoroni, Lift 4, Rupayan Millennium Square, Dhaka 1212, Bangladesh",
+      "contact": "Email: info@deshtravelbd.com",
+      "policyLink": "https://www.deshtravelbd.com/termsandcondition?utm_source=chatgpt.com",
+      "notes": "All collected information is stored securely, with access limited to authorized personnel only. Data sharing with external entities occurs strictly when required for legal or operational needs. Security protocols include encryption, access restrictions, and regular audits. By utilizing Desh Travel services, you consent to the policies outlined here. Updates to this privacy policy will be posted on our website and are effective immediately upon publication."
+    },
+    {
+      "company": "Hanif",
+      "description": "Hanif is committed to protecting the privacy and personal data of our customers. We collect personal details such as names, phone numbers, travel history, and booking preferences to provide efficient booking and travel services. This information helps us improve service quality, offer relevant promotions, and ensure smooth operational management.",
+      "address": "Gabtoli / Mirpur region, Dhaka",
+      "contact": "Customer Support: 16460, Counter: 01713-049540",
+      "policyLink": "https://hanifenterprisebd.com/privacy-policy?utm_source=chatgpt.com",
+      "notes": "All collected information is stored securely, with access limited to authorized personnel only. Data sharing with external entities occurs strictly when required for legal or operational needs. Security protocols include encryption, access restrictions, and regular audits. By utilizing Hanif services, you consent to the policies outlined here. Updates to this privacy policy will be posted on our website and are effective immediately upon publication."
+    },
+    {
+      "company": "Shyamoli",
+      "description": "Shyamoli is committed to protecting the privacy and personal data of our customers. We collect personal details such as names, phone numbers, travel history, and booking preferences to provide efficient booking and travel services. This information helps us improve service quality, offer relevant promotions, and ensure smooth operational management.",
+      "address": "27/ka, Pisciculture Housing Society, Shyamoli, Mohammadpur, Dhaka-1207",
+      "contact": "Reservations/Complaints: 01908899544, 01908899522, 01908899499",
+      "policyLink": "Full Privacy Policy available on website",
+      "notes": "All collected information is stored securely, with access limited to authorized personnel only. Data sharing with external entities occurs strictly when required for legal or operational needs. Security protocols include encryption, access restrictions, and regular audits. By utilizing Shyamoli services, you consent to the policies outlined here. Updates to this privacy policy will be posted on our website and are effective immediately upon publication."
+    },
+    {
+      "company": "Soudia",
+      "description": "Soudia is committed to protecting the privacy and personal data of our customers. We collect personal details such as names, phone numbers, travel history, and booking preferences to provide efficient booking and travel services. This information helps us improve service quality, offer relevant promotions, and ensure smooth operational management.",
+      "address": "Panthapath, Dhaka 1205",
+      "contact": "Dhaka Panthapath Counter: 01919-654926",
+      "policyLink": "See website or counter for Privacy Policy",
+      "notes": "All collected information is stored securely, with access limited to authorized personnel only. Data sharing with external entities occurs strictly when required for legal or operational needs. Security protocols include encryption, access restrictions, and regular audits. By utilizing Soudia services, you consent to the policies outlined here. Updates to this privacy policy will be posted on our website and are effective immediately upon publication."
+    }
+  ]
+}
