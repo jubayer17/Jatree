@@ -1,4 +1,3 @@
-# backend/build_vectorstore.py
 from backend.utils.vectorstore import create_vectorstore
 
 if __name__ == "__main__":

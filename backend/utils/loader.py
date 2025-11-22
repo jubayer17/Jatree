@@ -1,4 +1,3 @@
-# backend/utils/loader.py
 import json
 from pathlib import Path
 
@@ -24,9 +23,8 @@ def prepare_chunks():
     
     chunks = []
 
-    # -------------------------
+
     # Bus ticket info chunks
-    # -------------------------
     for district in bus_data.get("districts", []):
         district_name = district.get("name")
         for point in district.get("dropping_points", []):
@@ -35,9 +33,8 @@ def prepare_chunks():
                 f"In {district_name}, the bus ticket to {point['name']} costs {point['price']} BDT."
             )
 
-    # -------------------------
+
     # Bus provider info chunks
-    # -------------------------
     for provider in bus_data.get("bus_providers", []):
         coverage = provider.get("coverage_districts", [])
         if coverage:
@@ -46,9 +43,8 @@ def prepare_chunks():
                 f"The bus company {provider['name']} operates in the following districts: {coverage_str}."
             )
 
-    # -------------------------
+   
     # Privacy policy chunks
-    # -------------------------
     for policy in privacy_data.get("privacyPolicies", []):
         company = policy.get("company", "")
         desc = policy.get("description", "")

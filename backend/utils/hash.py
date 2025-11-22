@@ -1,4 +1,3 @@
-# utils/hash.py
 from passlib.context import CryptContext
 import sys
 

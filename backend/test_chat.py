@@ -1,5 +1,3 @@
-
-# backend/test_chat.py
 import requests
 
 # Local FastAPI URL for your chat endpoint
@@ -11,7 +9,7 @@ def ask_question(question: str):
     payload = {"q": question}
     try:
         response = requests.post(URL, json=payload, headers=HEADERS, timeout=TIMEOUT)
-        response.raise_for_status()  # Raise exception for HTTP errors
+        response.raise_for_status() 
         data = response.json()
         answer = data.get("answer", "[No answer returned]")
         print("AI Answer:", answer)

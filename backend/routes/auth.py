@@ -1,4 +1,3 @@
-# backend/routes/auth.py
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Response, Request, Depends, status, Header
 from pydantic import BaseModel
@@ -14,24 +13,23 @@ from backend.database import users_collection
 router = APIRouter(tags=["Authentications"])
 logger = logging.getLogger("uvicorn.error")
 
-# Cookie settings (dev-friendly defaults)
+# Cookie settings 
 ACCESS_TOKEN_EXPIRE_DAYS = 1
 ACCESS_TOKEN_NAME = os.getenv("ACCESS_TOKEN_NAME", "access_token")
 COOKIE_SECURE = os.getenv("COOKIE_SECURE", "false").lower() in ("true", "1", "yes")
-COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "lax")  # 'lax' on dev, 'none' in some cross-site setups (with secure=True)
+COOKIE_SAMESITE = os.getenv("COOKIE_SAMESITE", "lax")  
 COOKIE_HTTPONLY = True
 COOKIE_PATH = "/"
 
 
-# Minimal user response model (returned to client)
+
 class UserOut(BaseModel):
     name: str
     email: str
 
 
-# ----------------------
+
 # SIGNUP
-# ----------------------
 @router.post("/signup", status_code=status.HTTP_201_CREATED)
 async def signup(user: UserCreate):
     existing = await users_collection.find_one({"email": user.email})
@@ -48,9 +46,8 @@ async def signup(user: UserCreate):
     return {"message": "Signup successful"}
 
 
-# ----------------------
+
 # LOGIN
-# ----------------------
 @router.post("/login")
 async def login(user: UserLogin, response: Response):
     db_user = await users_collection.find_one({"email": user.email})
@@ -60,7 +57,7 @@ async def login(user: UserLogin, response: Response):
     if not verify_password(user.password, db_user["password"]):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect password")
 
-    # Create JWT token (expires in ACCESS_TOKEN_EXPIRE_DAYS)
+    # Create JWT token 
     token_payload = {"sub": db_user["email"]}
     token = create_token(token_payload, days=ACCESS_TOKEN_EXPIRE_DAYS)
 
@@ -70,7 +67,7 @@ async def login(user: UserLogin, response: Response):
         key=ACCESS_TOKEN_NAME,
         value=token,
         httponly=COOKIE_HTTPONLY,
-        secure=COOKIE_SECURE,   # must be False for http://localhost dev
+        secure=COOKIE_SECURE,   
         samesite=COOKIE_SAMESITE,
         max_age=max_age,
         path=COOKIE_PATH,
@@ -84,9 +81,8 @@ async def login(user: UserLogin, response: Response):
     }
 
 
-# ----------------------
+
 # LOGOUT
-# ----------------------
 @router.post("/logout")
 async def logout(response: Response):
     response.delete_cookie(key=ACCESS_TOKEN_NAME, path=COOKIE_PATH)
@@ -109,7 +105,7 @@ async def get_current_user(
         if auth.lower().startswith("bearer "):
             token = auth.split(" ", 1)[1].strip()
         else:
-            token = auth  # allow raw token as header for convenience
+            token = auth  
 
     # 2) fallback to cookie named ACCESS_TOKEN_NAME
     if not token:
@@ -134,9 +130,8 @@ async def get_current_user(
     return UserOut(name=db_user.get("name"), email=db_user.get("email"))
 
 
-# ----------------------
+
 # Protected route
-# ----------------------
 @router.get("/me", response_model=UserOut)
 async def me(user: UserOut = Depends(get_current_user)):
     return user

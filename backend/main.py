@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.routes.auth import router as AuthRouter
 from backend.routes.tickets import router as tickets_router
-from backend.routes.chat import router as chat_router  # 🔥 Add chat router
+from backend.routes.chat import router as chat_router  
 
 app = FastAPI()
 

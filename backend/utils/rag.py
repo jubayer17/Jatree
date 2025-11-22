@@ -4,26 +4,23 @@ import re
 from google.genai import Client, types
 from backend.utils.vectorstore import load_vectorstore
 
-# =====================================================
+
 #  GEMINI CLIENT SETUP
-# =====================================================
 GEMINI_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
 genai_client = Client(api_key=GEMINI_KEY) if GEMINI_KEY else None
 HAS_GEMINI = genai_client is not None
 
 
-# =====================================================
+
 #  LOAD VECTORSTORE
-# =====================================================
 try:
     _vectorstore = load_vectorstore()
 except FileNotFoundError:
     _vectorstore = None
 
 
-# =====================================================
+
 #  MARKDOWN / SYMBOL CLEANER
-# =====================================================
 def clean_output(text: str) -> str:
     """Remove markdown symbols (*, -, _, #, **) and normalize spacing."""
     if not text:
@@ -38,9 +35,8 @@ def clean_output(text: str) -> str:
     return text.strip()
 
 
-# =====================================================
+
 #  SAFE GEMINI CALL
-# =====================================================
 def _safe_gemini(prompt: str,
                  max_output_tokens: int = 500,
                  temperature: float = 0.35) -> str:
@@ -60,18 +56,17 @@ def _safe_gemini(prompt: str,
         )
 
         if not response or not response.text:
-            return None  # triggers retry
+            return None 
 
         return clean_output(response.text)
 
     except Exception as e:
         print("[Gemini Error]", e)
-        return None  # triggers retry
+        return None  
 
 
-# =====================================================
+
 #  GENERATE ANSWER (RAG + GENERIC CHAT)
-# =====================================================
 def generate_answer(question: str,
                     top_k: int = 4,
                     similarity_threshold: float = 0.32) -> str:
@@ -90,9 +85,8 @@ def generate_answer(question: str,
     hits = _vectorstore.similarity_search(question, k=top_k)
     relevant = [h for h in hits if h["score"] >= similarity_threshold]
 
-    # =====================================================
+
     #  CASE 1 — RAG MODE (context available)
-    # =====================================================
     if relevant:
         context = "\n".join(f"- {h['text']}" for h in relevant)
 
@@ -107,9 +101,8 @@ def generate_answer(question: str,
             "Give a clear and friendly answer:"
         )
 
-    # =====================================================
+   
     #  CASE 2 — GENERIC CHAT MODE (no context match)
-    # =====================================================
     else:
         prompt = (
             "You are a friendly conversational AI. "
@@ -121,15 +114,14 @@ def generate_answer(question: str,
             "Reply:"
         )
 
-    # =====================================================
+  
     #  GEMINI CALL WITH RETRIES
-    # =====================================================
     last_err = None
 
     for attempt in range(4):
         answer = _safe_gemini(prompt, max_output_tokens=500, temperature=0.45)
 
-        if answer:  # success
+        if answer: 
             return answer
 
         last_err = f"Attempt {attempt + 1} returned empty."
@@ -138,7 +130,6 @@ def generate_answer(question: str,
         print(f"[RAG] Retry in {wait}s — {last_err}")
         time.sleep(wait)
 
-    # =====================================================
+
     #  FINAL FAILURE FALLBACK
-    # =====================================================
     return "I'm having some trouble answering right now. Please try again shortly."

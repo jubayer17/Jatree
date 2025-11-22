@@ -1,4 +1,3 @@
-# backend/routes/chat.py
 from fastapi import APIRouter
 from pydantic import BaseModel
 from backend.utils.rag import generate_answer

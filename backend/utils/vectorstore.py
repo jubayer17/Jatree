@@ -1,14 +1,11 @@
-# backend/utils/vectorstore.py
 from pathlib import Path
 import os
 import json
 import numpy as np
 from typing import List, Optional
-from backend.utils.loader import prepare_chunks  # returns list[str]
+from backend.utils.loader import prepare_chunks 
 
-# ---------------------------
-# Local embedding model
-# ---------------------------
+
 try:
     from sentence_transformers import SentenceTransformer
     HAS_LOCAL = True
@@ -18,7 +15,7 @@ except Exception:
 
 _LOCAL_MODEL: Optional[SentenceTransformer] = None
 DEFAULT_LOCAL_MODEL = "all-MiniLM-L6-v2"
-DEFAULT_DIM = 384  # enforce embedding dimension
+DEFAULT_DIM = 384  
 
 BASE_DIR = Path(__file__).parent.parent
 VECTOR_DIR = BASE_DIR / "vectorstore" / "simple"
@@ -26,9 +23,7 @@ VECTOR_DIR.mkdir(parents=True, exist_ok=True)
 EMBED_FILE = VECTOR_DIR / "embeddings.npy"
 META_FILE = VECTOR_DIR / "metas.json"
 
-# ---------------------------
-# Local embedding utilities
-# ---------------------------
+
 def _load_local_model() -> SentenceTransformer:
     global _LOCAL_MODEL
     if _LOCAL_MODEL is None:
@@ -39,7 +34,7 @@ def embed_texts_local_safe(texts: List[str]) -> np.ndarray:
     model = _load_local_model()
     embs = model.encode(texts, convert_to_numpy=True, show_progress_bar=False)
     embs = np.asarray(embs, dtype=np.float32)
-    # enforce consistent dimension
+ 
     if embs.shape[1] != DEFAULT_DIM:
         padded = np.zeros((embs.shape[0], DEFAULT_DIM), dtype=np.float32)
         min_dim = min(embs.shape[1], DEFAULT_DIM)
@@ -47,9 +42,7 @@ def embed_texts_local_safe(texts: List[str]) -> np.ndarray:
         embs = padded
     return embs
 
-# ---------------------------
-# Vectorstore creation & loading
-# ---------------------------
+
 def create_vectorstore():
     """Create vectorstore from chunks and save embeddings + metas."""
     if EMBED_FILE.exists():
@@ -92,7 +85,7 @@ def load_vectorstore():
         def _embed_query(self, query: str) -> np.ndarray:
             q_emb = embed_texts_local_safe([query])[0]
             q_emb = np.asarray(q_emb, dtype=np.float32)
-            # pad or truncate to stored dim
+            
             if q_emb.shape[0] != self.dim:
                 if q_emb.shape[0] > self.dim:
                     q_emb = q_emb[:self.dim]

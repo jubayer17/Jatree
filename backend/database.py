@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 import sys
 
-# explicitly load .env from this folder
+
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 MONGO_URL = os.getenv("MONGO_URL")

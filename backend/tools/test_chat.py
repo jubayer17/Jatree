@@ -1,11 +1,10 @@
-# backend/test_chat.py
 import requests
 
-# Your local FastAPI URL for the correct endpoint
-URL = "http://127.0.0.1:8000/ask"  # <- changed from /chat/
+# local FastAPI URL for the correct endpoint
+URL = "http://127.0.0.1:8000/ask"  
 
 def ask_question(question):
-    payload = {"q": question}  # <- matches ChatIn field name
+    payload = {"q": question}  
     response = requests.post(URL, json=payload)
     if response.status_code == 200:
         data = response.json()
