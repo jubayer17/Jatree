@@ -11,32 +11,33 @@ import { Navigation } from 'swiper/modules';
 
 const PrivacySlider: React.FC = () => {
     return (
-        <div className="py-12 px-4 md:px-8 bg-gray-100 relative">
+        <div className="relative py-16 px-6 md:px-10 bg-gradient-to-b from-gray-50 to-gray-200">
 
-            <h1 className="text-4xl font-bold text-center mb-8">
-                Bus Companies Privacy Policies
+            {/* Section Title */}
+            <h1 className="text-4xl font-bold text-center mb-12 text-gray-900 tracking-tight">
+                Find Your Trusted Travel Partner
             </h1>
 
-            {/* Custom navigation buttons (outside the slider) */}
+            {/* Navigation Buttons */}
             <button
-                className="privacy-prev absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 
-                bg-white shadow-md p-3 rounded-full hover:scale-110 transition"
+                className="privacy-prev absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-20 
+                bg-white/90 backdrop-blur-lg shadow-lg p-3 rounded-full hover:bg-white hover:scale-110 transition-all duration-200"
             >
                 ◀
             </button>
 
             <button
-                className="privacy-next absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 
-                bg-white shadow-md p-3 rounded-full hover:scale-110 transition"
+                className="privacy-next absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-20 
+                bg-white/90 backdrop-blur-lg shadow-lg p-3 rounded-full hover:bg-white hover:scale-110 transition-all duration-200"
             >
                 ▶
             </button>
 
-            {/* Center slider */}
+            {/* Slider */}
             <div className="flex justify-center">
                 <Swiper
                     modules={[Navigation]}
-                    spaceBetween={20}
+                    spaceBetween={40}
                     slidesPerView={3}
                     navigation={{
                         nextEl: '.privacy-next',
@@ -56,7 +57,6 @@ const PrivacySlider: React.FC = () => {
                                 address={policy.address}
                                 contact={policy.contact}
                                 policyLink={policy.policyLink}
-                                image="/placeholder.jpg"
                             />
                         </SwiperSlide>
                     ))}

@@ -1,44 +1,42 @@
 'use client';
 
 import React from 'react';
+import { FaMapMarkerAlt, FaPhoneAlt, FaLink } from 'react-icons/fa';
 
 interface PrivacyCardProps {
     company: string;
     address: string;
     contact: string;
     policyLink: string;
-    image: string;
 }
 
-const PrivacyCard: React.FC<PrivacyCardProps> = ({ company, address, contact, policyLink, image }) => {
+const PrivacyCard: React.FC<PrivacyCardProps> = ({ company, address, contact, policyLink }) => {
     return (
-        <div
-            className="relative w-80 h-96 rounded-xl overflow-hidden shadow-xl shrink-0"
-            style={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-            }}
-        >
-            {/* blackish gradient from bottom to top */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+        <div className="relative w-80 h-96 rounded-2xl shadow-2xl bg-gradient-to-br from-blue-50 to-white p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300">
 
-            {/* text section */}
-            <div className="absolute bottom-4 left-4 right-4 text-white z-10">
-                <h2 className="text-xl font-bold">{company}</h2>
+            {/* Company Name */}
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{company}</h2>
 
-                <p className="text-sm opacity-90 mt-1">{address}</p>
-                <p className="text-sm opacity-90 mt-1">{contact}</p>
-
+            {/* Info Section */}
+            <div className="space-y-3">
+                <p className="flex items-center text-gray-700">
+                    <FaMapMarkerAlt className="mr-2 text-blue-500" /> {address}
+                </p>
+                <p className="flex items-center text-gray-700">
+                    <FaPhoneAlt className="mr-2 text-green-500" /> {contact}
+                </p>
                 <a
                     href={policyLink}
-                    className="text-sm underline opacity-90 hover:opacity-100 mt-2 inline-block"
+                    className="flex items-center text-gray-700 hover:text-blue-600 font-medium"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    View Policy
+                    <FaLink className="mr-2 text-purple-500" /> View Policy
                 </a>
             </div>
+
+            {/* Decorative Bottom Accent */}
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mt-4"></div>
         </div>
     );
 };
