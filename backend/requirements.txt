@@ -1,0 +1,37 @@
+# FastAPI + server
+fastapi
+uvicorn[standard]
+python-dotenv
+
+# MongoDB async
+motor
+
+# Data validation & serialization
+pydantic
+
+# HTTP clients
+requests
+httpx
+
+# LangChain for RAG pipeline
+langchain
+
+# Vector stores & embeddings
+chromadb
+tiktoken
+faiss-cpu
+
+# LLMs / OpenAI / Gemini
+openai
+google-genai
+
+# Utilities
+python-multipart
+python-jose
+passlib[bcrypt]
+email-validator
+typing-extensions
+rich
+loguru
+pytest
+pytest-asyncio
